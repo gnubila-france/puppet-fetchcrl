@@ -5,6 +5,8 @@ addons:
 bundler_args: --without system_tests
 script: ['bundle exec rake validate','bundle exec rake lint','bundle exec rake spec SPEC_OPTS="--format documentation"','bundle exec rake metadata']
 matrix:
+  allow_failures:
+    - env: BEAKER_set="centos-7-x86_64-docker" 
   fast_finish: true
   include:
   - rvm: 1.9.3
