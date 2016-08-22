@@ -37,8 +37,10 @@ class fetchcrl::install (
     $capkgs_require = undef
   }
   # The CA meta package.
-  ensure_packages($capkgs, {
+  if ! defined(Package[$capkgs]) {
+    package{$capkgs:
       ensure  => $capkgs_version,
       require => $capkgs_require,
-    })
+    }
+  }
 }
